@@ -1,0 +1,42 @@
+name: Semantic Release
+
+on:
+    push:
+        branches: [main]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: false
+
+jobs:
+    release:
+        if: ${{ !startsWith(github.event.head_commit.message, 'chore(release):') }}
+        runs-on: 'ubuntu-latest'
+
+        permissions:
+            contents: write
+            pull-requests: write
+
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  fetch-tags: true
+                  persist-credentials: false
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: |
+                  npm install
+
+            - name: Run Semantic Release
+              env:
+                  GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+                  RELEASE_PROCESS: 'true'
+              run: |
+                  npm run release:zip
+                  npx semantic-release
