@@ -1,0 +1,62 @@
+{
+    "name": "intel-ui-icons",
+    "version": "1.0.0",
+    "license": "Apache 2.0",
+    "private": true,
+    "description": "Set of icons packed as a font where every symbol is an icon",
+    "main": "dist.web",
+    "types": "dist.web/index.d.ts",
+    "files": [
+        "dist.web",
+        "icons"
+    ],
+    "devDependencies": {
+        "@commitlint/cli": "^19.8.1",
+        "@commitlint/config-conventional": "^19.8.1",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/commit-analyzer": "^13.0.1",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^11.0.3",
+        "@semantic-release/npm": "^12.0.1",
+        "@semantic-release/release-notes-generator": "^14.0.3",
+        "adm-zip": "^0.5.16",
+        "fantasticon": "^2.0.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.1.0",
+        "oslllo-svg-fixer": "^5.0.0",
+        "prettier": "^3.5.3",
+        "semantic-release": "^24.2.5"
+    },
+    "scripts": {
+        "prepare": "husky",
+        "format": "prettier --write --plugin-search-dir=. .",
+        "semantic-release": "semantic-release",
+        "iconfont:font-style-regular": "sed -i 's/FONT_STYLE=.*/FONT_STYLE=regular/' .env",
+        "iconfont:font-style-solid": "sed -i 's/FONT_STYLE=.*/FONT_STYLE=solid/' .env",
+        "iconfont:font-style-light": "sed -i 's/FONT_STYLE=.*/FONT_STYLE=light/' .env",
+        "iconfont:svg-fixer-regular": "oslllo-svg-fixer -s ./gen/src/icons/svgs/regular -d ./icons/svgs/regular",
+        "iconfont:svg-fixer-solid": "oslllo-svg-fixer -s ./gen/src/icons/svgs/solid -d ./icons/svgs/solid",
+        "iconfont:svg-fixer-light": "oslllo-svg-fixer -s ./gen/src/icons/svgs/light -d ./icons/svgs/light",
+        "iconfont:cp-png-icons": "cp -r ./gen/src/icons/pngs ./icons",
+        "iconfont:build": "fantasticon -c .fantasticonrc.js",
+        "iconfont:build:regular": "npm run iconfont:svg-fixer-regular && npm run iconfont:font-style-regular && npm run iconfont:build",
+        "iconfont:build:solid": "npm run iconfont:svg-fixer-solid && npm run iconfont:font-style-solid && npm run iconfont:build",
+        "iconfont:build:light": "npm run iconfont:svg-fixer-light && npm run iconfont:font-style-light && npm run iconfont:build",
+        "iconfont:build:all": "npm run iconfont:build:solid && npm run iconfont:build:light && npm run iconfont:build:regular && npm run iconfont:cp-png-icons",
+        "release:zip": "npm run zip:custom ./dist.web dist.web.zip",
+        "zip:custom": "node scripts/create-zip.js"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json,css,scss,babelrc,yml,md,mdx}": [
+            "prettier --write --plugin-search-dir=. ."
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/intel/intel-ui-icons.git"
+    },
+    "bugs": {
+        "url": "https://github.com/intel/intel-ui-icons/issues"
+    },
+    "homepage": "https://github.com/intel/inte,-ui-icons#readme"
+}
