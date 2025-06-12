@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Skip hooks during release process
+if [ "$RELEASE_PROCESS" = "true" ]; then
+  echo "Skipping commit-msg hook during release process"
+  exit 0
+fi
+
+npx --no-install commitlint --edit "$1"

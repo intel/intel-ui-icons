@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'spark-icon';
+    src: url('./spark-icon-solid.woff2') format('woff2'), 
+        url('./spark-icon-solid.woff') format('woff'),
+        url('./spark-icon-solid.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'spark-icon';
+    src: url('./spark-icon-regular.woff2') format('woff2'), 
+        url('./spark-icon-regular.woff') format('woff'),
+        url('./spark-icon-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'spark-icon';
+    src: url('./spark-icon-light.woff2') format('woff2'), 
+        url('./spark-icon-light.woff') format('woff'),
+        url('./spark-icon-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: block;
+}
+
+{{# if selector }}
+{{ selector }}:not(.ui) {
+{{/ if }}
+    font-family: 'spark-icon';
+    font-style: normal;
+    display: inline-block;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+{{ selector }}:not(.ui):not(:empty):before {
+    padding-right: 0.25em;
+}
+{{ selector }}:not(.ui){{ selector }}-solid {
+    font-weight: 600;
+}
+{{ selector }}:not(.ui){{ selector }}-regular {
+    font-weight: 400;
+}
+{{ selector }}:not(.ui){{ selector }}-light {
+    font-weight: 300;
+}
+{{ selector }}:not(.ui){{ selector }}-spin {
+    animation: spark-icon-spin-animation 2s linear infinite;
+}
+
+{{# each codepoints }}
+{{# if ../selector }}
+{{ ../selector }}:not(.ui).{{ ../prefix }}-{{ @key }}:before {
+{{/ if }}
+    content: '\\{{ codepoint this }}';
+}
+{{/ each }}
+
+@keyframes spark-icon-spin-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

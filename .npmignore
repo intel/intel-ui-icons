@@ -1,0 +1,21 @@
+node_modules
+node_modules/** */
+gen
+gen/** */
+src
+src/** */
+.github
+.github/** */
+.vscode
+.vscode/** */
+.husky
+.husky/** */
+npm-debug.log
+.stylelintrc.json
+commitlint.config.js
+.nvmrc
+.releaserc
+.env
+.fantasticonrc.js
+legacy.md
+index.js

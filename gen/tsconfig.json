@@ -1,0 +1,21 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "module": "CommonJS",
+        "jsx": "react",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "target": "es2021", // Changed from ES2022 to es2021 (lowercase)
+        "lib": ["es2021", "dom"], // Changed from ES2022 to es2021 (lowercase)
+        "strict": true, // Enable strict type checking
+        "skipLibCheck": true, // Skip type checking of declaration files
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true, // Allow importing JSON files
+        "outDir": "./dist", // Output directory for compiled files
+        "baseUrl": ".", // Base directory for path resolution
+        "paths": {
+            "*": ["node_modules/*"]
+        }
+    }
+}

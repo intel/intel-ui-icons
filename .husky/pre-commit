@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Skip hooks during release process
+if [ "$RELEASE_PROCESS" = "true" ]; then
+  echo "Skipping pre-commit hook during release process"
+  exit 0
+fi
+
+npm run format
+npx commitlint --edit $1
