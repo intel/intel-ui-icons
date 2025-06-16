@@ -1,0 +1,49 @@
+name: Trivy Scan
+
+on:
+    workflow_dispatch: {}
+    pull_request:
+        types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+    trivy-scan:
+        runs-on: 'ubuntu-latest'
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  fetch-tags: true
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Generate Trivy Vulnerability Report
+              uses: aquasecurity/trivy-action@master
+              with:
+                  scan-type: 'fs'
+                  output: trivy-report.json
+                  format: json
+                  exit-code: 0
+
+            - name: Upload Vulnerability Scan Results
+              uses: actions/upload-artifact@v4
+              with:
+                  name: trivy-report
+                  path: trivy-report.json
+                  retention-days: 30
+
+            - name: Check High/Critical Vulnerabilities
+              id: checkVulnerabilities
+              uses: aquasecurity/trivy-action@master
+              with:
+                  scan-type: 'fs'
+                  format: table
+                  severity: HIGH,CRITICAL
+                  ignore-unfixed: true
+                  exit-code: 1
+                  skip-setup-trivy: true
