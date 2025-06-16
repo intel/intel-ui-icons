@@ -2,3 +2,6 @@ node_modules
 node_modules/**
 gen/src/icons/**
 dist.web.zip
+node_modules
+gen/src/GraphQL/**
+gen/src/GraphQL
