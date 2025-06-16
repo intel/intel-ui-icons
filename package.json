@@ -22,7 +22,7 @@
         "adm-zip": "^0.5.16",
         "fantasticon": "^2.0.0",
         "husky": "^9.1.7",
-        "lint-staged": "^16.1.0",
+        "lint-staged": "^16.1.2",
         "oslllo-svg-fixer": "^5.0.0",
         "prettier": "^3.5.3",
         "semantic-release": "^24.2.5"
