@@ -1,10 +1,11 @@
 // generate.ts
 import chalk from 'chalk'
-import { execSync } from 'child_process'
+import { execFileSync } from 'child_process'
 import dotenv from 'dotenv'
 import fs from 'fs-extra'
 import path from 'path'
 import { FigmaDocument, IconFontData, IconMapper } from './interfaces'
+
 
 // Load environment variables
 dotenv.config()
@@ -37,7 +38,7 @@ filesToDelete.push(svgImagesUrlsPath)
 const iconMapper: IconMapper = {}
 
 try {
-    ;(async () => {
+    ; (async () => {
         try {
             console.log(chalk.blueBright('1. Using curl to fetch data from Figma API...'))
 
@@ -57,10 +58,26 @@ try {
             // console.log(chalk.blue('   Command:'), curlCommand);
 
             // Execute curl with inherit stdio to show real-time progress
-            execSync(curlCommand, {
-                timeout: 120000,
-                env: execEnvironment
-            })
+            try {
+                execFileSync(
+                    'curl',
+                    [
+                        '-s',
+                        '-o',
+                        tempFilePath,
+                        '-H',
+                        `X-Figma-Token: ${FIGMA_API_TOKEN}`,
+                        FIGMA_CANVAS_URL
+                    ],
+                    {
+                        timeout: 120000,
+                        env: execEnvironment
+                    }
+                )
+            } catch (error) {
+                console.error(chalk.red('   Error fetching data from Figma API:'), error)
+                throw error
+            }
 
             // Read from file
             console.log(chalk.blueBright('2. Reading response from file...'))
@@ -199,8 +216,7 @@ async function getImageUrls(
 
             console.log(
                 chalk.gray(
-                    `    Processing  ${imageType} batch ${i + 1}/${batches.length} (${
-                        batch.length
+                    `    Processing  ${imageType} batch ${i + 1}/${batches.length} (${batch.length
                     } icons)`
                 )
             )
@@ -214,10 +230,21 @@ async function getImageUrls(
             console.log(chalk.yellow(`    Downloading URLs for ${imageType} batch ${i + 1}`))
             // Execute curl with inherit stdio to show real-time progress
             try {
-                execSync(curlImagesURLCommand, {
-                    timeout: 120000,
-                    env: execEnvironment
-                })
+                execFileSync(
+                    'curl',
+                    [
+                        '-s',
+                        '-o',
+                        batchFilePath,
+                        '-H',
+                        `X-Figma-Token: ${FIGMA_API_TOKEN}`,
+                        `https://api.figma.com/v1/images/${figmaFileKey}?ids=${batchKeysString}&format=${imageType}`
+                    ],
+                    {
+                        timeout: 120000,
+                        env: execEnvironment
+                    }
+                )
 
                 // Read and process the batch response
                 const batchData = JSON.parse(fs.readFileSync(batchFilePath, 'utf-8'))
@@ -269,7 +296,8 @@ async function downloadImages(
 ) {
     const totalIcons = Object.keys(allImageUrls).length
     let currentIcon = 0
-    Object.entries(allImageUrls).forEach(([ImageID, ImageUrl]) => {
+
+    for (const [ImageID, ImageUrl] of Object.entries(allImageUrls) as [string, string][]) {
         const ImageFileName = iconMapper[ImageID].name + '.' + imageType || null
         const variant = iconMapper[ImageID].variant || null
 
@@ -277,8 +305,7 @@ async function downloadImages(
             const folder = path.resolve(__dirname, 'icons', `${imageType}s`, variant)
             console.log(
                 chalk.gray(
-                    `    Downloading Image: ${ImageFileName} ${variant}  (${
-                        currentIcon + 1
+                    `    Downloading Image: ${ImageFileName} ${variant}  (${currentIcon + 1
                     }/${totalIcons})`
                 )
             )
@@ -286,13 +313,24 @@ async function downloadImages(
             // Create Image directory if it doesn't exist
             fs.ensureDirSync(folder)
 
-            // Download Image data
-            const curlImageCommand = `curl -s -o "${folder}/${ImageFileName}" "${ImageUrl}"`
-
-            execSync(curlImageCommand, {
-                timeout: 30000,
-                env: execEnvironment
-            })
+            const outputFilePath = path.join(folder, ImageFileName)
+            try {
+                execFileSync(
+                    'curl',
+                    [
+                        '-s',
+                        '-o',
+                        outputFilePath,
+                        ImageUrl.toString()
+                    ],
+                    {
+                        timeout: 30000,
+                        env: execEnvironment
+                    }
+                )
+            } catch (error) {
+                console.error(chalk.red(`    Error downloading ${ImageFileName}:`), error)
+            }
         } else {
             console.error(
                 chalk.underline.yellow(
@@ -302,6 +340,6 @@ async function downloadImages(
         }
 
         currentIcon++
-    })
+    }
     console.log(chalk.green(`    All ${currentIcon} ${imageType} images were downloaded`))
 }
