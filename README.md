@@ -1,4 +1,7 @@
-# Intel UI Icons
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/intel/intel-ui-icons/badge)](https://scorecard.dev/viewer/?uri=github.com/intel/intel-ui-icons)
+[![CodeQL](https://github.com/intel/intel-ui-icons/workflows/CodeQL/badge.svg)](https://github.com/intel/intel-ui-icons/security/code-scanning)
+
+# Intel® UI Icons
 
 Offering Intel's brand icons.
 
