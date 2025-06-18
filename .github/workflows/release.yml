@@ -46,5 +46,5 @@ jobs:
                   GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
                   RELEASE_PROCESS: 'true'
               run: |
-                  npm run release:zip
+                  npm run release:prepare
                   npx semantic-release

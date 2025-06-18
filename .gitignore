@@ -5,3 +5,5 @@ dist.web.zip
 node_modules
 gen/src/GraphQL/**
 gen/src/GraphQL
+dist.web/README.md
+dist.web/LICENSE.md
