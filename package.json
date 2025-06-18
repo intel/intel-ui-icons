@@ -43,7 +43,9 @@
         "iconfont:build:solid": "npm run iconfont:svg-fixer-solid && npm run iconfont:font-style-solid && npm run iconfont:build",
         "iconfont:build:light": "npm run iconfont:svg-fixer-light && npm run iconfont:font-style-light && npm run iconfont:build",
         "iconfont:build:all": "npm run iconfont:build:solid && npm run iconfont:build:light && npm run iconfont:build:regular && npm run iconfont:cp-png-icons",
+        "release:build": "node scripts/build.js",
         "release:zip": "npm run zip:custom ./dist.web dist.web.zip",
+        "release:prepare": "npm run release:build && npm run release:zip",
         "zip:custom": "node scripts/create-zip.js"
     },
     "lint-staged": {

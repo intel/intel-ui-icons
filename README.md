@@ -26,3 +26,9 @@ Where
 - `spark-icon` class name is a mandatory parameter that tells a page to use styles from _iconfont_ component
 - `spark-icon-copy` instructs to use a particular shape for an icon. In this example the icon will look like two overlapping pages (copy to clipboard).
 - `spark-icon-light`, `spark-icon-regular`, `spark-icon-solid` filled or outlined shapes with a thin, medium or thick stroke
+
+## Troubleshooting
+
+### Installing packages while connected to the Intel VPN
+
+Running fastasticon on Windows: Downgrade version to 1.2.3.
