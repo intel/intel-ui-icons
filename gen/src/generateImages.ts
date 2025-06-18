@@ -6,7 +6,6 @@ import fs from 'fs-extra'
 import path from 'path'
 import { FigmaDocument, IconFontData, IconMapper } from './interfaces'
 
-
 // Load environment variables
 dotenv.config()
 //Retrieve Figma Access Token and Canvas from .env file
@@ -38,7 +37,7 @@ filesToDelete.push(svgImagesUrlsPath)
 const iconMapper: IconMapper = {}
 
 try {
-    ; (async () => {
+    ;(async () => {
         try {
             console.log(chalk.blueBright('1. Using curl to fetch data from Figma API...'))
 
@@ -216,7 +215,8 @@ async function getImageUrls(
 
             console.log(
                 chalk.gray(
-                    `    Processing  ${imageType} batch ${i + 1}/${batches.length} (${batch.length
+                    `    Processing  ${imageType} batch ${i + 1}/${batches.length} (${
+                        batch.length
                     } icons)`
                 )
             )
@@ -305,7 +305,8 @@ async function downloadImages(
             const folder = path.resolve(__dirname, 'icons', `${imageType}s`, variant)
             console.log(
                 chalk.gray(
-                    `    Downloading Image: ${ImageFileName} ${variant}  (${currentIcon + 1
+                    `    Downloading Image: ${ImageFileName} ${variant}  (${
+                        currentIcon + 1
                     }/${totalIcons})`
                 )
             )
@@ -315,19 +316,10 @@ async function downloadImages(
 
             const outputFilePath = path.join(folder, ImageFileName)
             try {
-                execFileSync(
-                    'curl',
-                    [
-                        '-s',
-                        '-o',
-                        outputFilePath,
-                        ImageUrl.toString()
-                    ],
-                    {
-                        timeout: 30000,
-                        env: execEnvironment
-                    }
-                )
+                execFileSync('curl', ['-s', '-o', outputFilePath, ImageUrl.toString()], {
+                    timeout: 30000,
+                    env: execEnvironment
+                })
             } catch (error) {
                 console.error(chalk.red(`    Error downloading ${ImageFileName}:`), error)
             }
