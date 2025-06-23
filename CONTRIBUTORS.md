@@ -13,3 +13,5 @@ Dmitry Skorobogatyi
 Vladimir Repin
 David Tappy
 Mariusz Waclawczyk
+Agustin Francesa Alfaro
+Jakub Kozakiewicz
