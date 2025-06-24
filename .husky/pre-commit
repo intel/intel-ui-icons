@@ -7,5 +7,5 @@ if [ "$RELEASE_PROCESS" = "true" ]; then
   exit 0
 fi
 
-
+npm run format
 npx lint-staged --allow-empty
