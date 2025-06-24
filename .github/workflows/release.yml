@@ -44,6 +44,7 @@ jobs:
             - name: Run Semantic Release
               env:
                   GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
                   RELEASE_PROCESS: 'true'
               run: |
                   npm run release:prepare
