@@ -31,4 +31,4 @@ Where
 
 ### Installing packages while connected to the Intel VPN
 
-Running fastasticon on Windows: Downgrade version to 1.2.3.
+Running fantasticon on Windows: Downgrade version to 1.2.3.

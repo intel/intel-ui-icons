@@ -2,7 +2,6 @@
     "name": "intel-ui-icons",
     "version": "1.0.0",
     "license": "Apache 2.0",
-    "private": true,
     "description": "Set of icons packed as a font where every symbol is an icon",
     "main": "dist.web",
     "types": "dist.web/index.d.ts",
