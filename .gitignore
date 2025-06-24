@@ -7,3 +7,5 @@ gen/src/GraphQL/**
 gen/src/GraphQL
 dist.web/README.md
 dist.web/LICENSE.md
+dist.web/package.json
+dist.web/CHANGELOG.md
