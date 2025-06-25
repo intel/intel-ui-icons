@@ -3,12 +3,7 @@ const path = require('path')
 const glob = require('glob')
 const distFolder = 'dist.web'
 
-//Delete and create the dist directory
-if (fs.existsSync(distFolder)) {
-    console.log('Removing existing dist directory...')
-    fs.removeSync(distFolder)
-}
-console.log('Creating dist directory...')
+//Verify if the distFolder folder exists, if not create it
 fs.ensureDirSync(distFolder)
 
 const elementsToCopy = ['LICENSE.md', 'README.md', 'package.json', 'CHANGELOG.md']
