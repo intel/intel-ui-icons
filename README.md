@@ -29,6 +29,4 @@ Where
 
 ## Troubleshooting
 
-### Installing packages while connected to the Intel VPN
-
 Running fantasticon on Windows: Downgrade version to 1.2.3.
