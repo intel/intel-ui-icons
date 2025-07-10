@@ -194,7 +194,6 @@ async function processComponentSets() {
       let textNode = figma.createText();
       textNode.characters = `${parentName} (${iconCount} icons)`;
       textNode.fontSize = 24;
-      textNode.fontSize = 24;
       textNode.fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 0 } }];
       textNode.resize(1600, textNode.height); // Set the width of the text label to 1600px
       frame.insertChild(0, textNode);
