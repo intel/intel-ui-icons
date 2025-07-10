@@ -8,6 +8,7 @@ function createTextNodesForStyles() {
       const textNode = figma.createText();
       textNode.x = 0;
       textNode.y = yPos;
+      await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
       textNode.characters = `Name: ${style.name}, Value: ${JSON.stringify(style.paints)}`;
       
       // Increment the y position for the next text node
