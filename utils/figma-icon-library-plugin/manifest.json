@@ -1,0 +1,15 @@
+{
+  "name": "Icon Gallery Creator",
+  "id": "1298379468726339294",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": []
+  }
+}

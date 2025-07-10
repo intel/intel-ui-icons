@@ -3,7 +3,7 @@
 
 # Intel® UI Icons
 
-Offering Intel's brand icons.
+Offering Intel's brand icons. [Figma file here](https://www.figma.com/design/PBtt8sQheUxdJ2IXEROZBy/Spark-Island---Icons).
 
 ## Using icons
 
