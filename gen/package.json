@@ -9,7 +9,7 @@
     "private": true,
     "dependencies": {
         "@types/fs-extra": "11.0.4",
-        "@types/node": "24.0.10",
+        "@types/node": "24.0.13",
         "chalk": "5.4.1",
         "dotenv": "17.2.0",
         "fs-extra": "11.3.0",
