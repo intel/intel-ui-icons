@@ -14,7 +14,7 @@
         "dotenv": "17.2.1",
         "fs-extra": "11.3.0",
         "ts-node": "10.9.2",
-        "typescript": "5.8.3"
+        "typescript": "5.9.2"
     },
     "devDependencies": {},
     "keywords": [
