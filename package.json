@@ -25,7 +25,7 @@
         "lint-staged": "^16.1.2",
         "oslllo-svg-fixer": "^5.0.0",
         "prettier": "^3.6.0",
-        "semantic-release": "^24.2.5"
+        "semantic-release": "^25.0.1"
     },
     "scripts": {
         "prepare": "husky",
