@@ -1,3 +1,9 @@
+# THIS PROJECT IS ARCHIVED  
+Intel will not provide or guarantee development of or support for this project, including but not limited to, maintenance, bug fixes, new releases or updates.  
+Patches to this project are no longer accepted by Intel.  
+This project has been identified as having known security issues. 
+
+
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/intel/intel-ui-icons/badge)](https://scorecard.dev/viewer/?uri=github.com/intel/intel-ui-icons)
 [![CodeQL](https://github.com/intel/intel-ui-icons/workflows/CodeQL/badge.svg)](https://github.com/intel/intel-ui-icons/security/code-scanning)
 
