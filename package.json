@@ -10,7 +10,7 @@
         "icons"
     ],
     "devDependencies": {
-        "@commitlint/cli": "^19.8.1",
+        "@commitlint/cli": "^20.1.0",
         "@commitlint/config-conventional": "^19.8.1",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "^13.0.1",
